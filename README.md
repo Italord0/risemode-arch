@@ -1,10 +1,10 @@
-# Water Cooler Rise Mode Aura Ice Monitor no Linux
+# Water Cooler Rise Mode Aura Ice Monitor no Arch Linux
 
-Este projeto permite o monitoramento da temperatura no Water Cooler Rise Mode Aura Ice para sistemas Linux.
+Este projeto permite o monitoramento da temperatura no Water Cooler Rise Mode Aura Ice para sistemas Arch Linux.
 
 ## Dependências
 
-Este script requer as seguintes dependências:
+Este script instala as seguintes dependências:
 - lm-sensors
 
 Você pode instalar executando o script `install.sh`:
@@ -15,27 +15,19 @@ Modelos suportados:
 
 ### Guia passo a passo
 
-1. **Instalar dependências**: Primeiro, você precisa instalar o pacote necessário `lm-sensors`. Esse pacote permitem que o script efetue a leitura de temperatura e monitore os recursos do sistema.
-										
-    Abra o terminal e execute os seguintes comandos:
-    ```bash
-    apt-get install lm-sensors
-    ```
-	Nota: Se você encontrar erros de permissão, use sudo para instalá-lo em todo o sistema.
-
-2. **Clone o Repositório**: O script e os arquivos de configuração necessários são hospedados no GitHub. Use o git para clonar o repositório para sua máquina local.
+1. **Clone o Repositório**: O script e os arquivos de configuração necessários são hospedados no GitHub. Use o git para clonar o repositório para sua máquina local.
 
     ```bash
-    git clone https://github.com/finallf/risemode
+    git clone https://github.com/Italord0/risemode-arch
     ```
 
-3. **Navegue até o Diretório do Projeto**: Mude seu diretório atual para a pasta do projeto recém-clonado.
+2. **Navegue até o Diretório do Projeto**: Mude seu diretório atual para a pasta do projeto recém-clonado.
 
     ```bash
-    cd risemode
+    cd risemode-arch
     ```
 
-4. **Execute o script de instalação**: O script `install.sh` automatizará o processo de instalação. Execute o script executando:
+3. **Execute o script de instalação**: O script `install.sh` automatizará o processo de instalação. Execute o script executando:
 
     ```bash
     ./install.sh

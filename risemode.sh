@@ -1,17 +1,23 @@
 #!/bin/bash
 
-VENDOR_ID=AA88	# Rise Mode Aura Ice 0xAA88
-PRODUCT_ID=8666	# Rise Mode Aura Ice 0x8666
-FILES=/dev/hidraw*
+VENDOR_ID="aa88"
+PRODUCT_ID="8666"
+HIDRAW=""
 
-for f in $FILES; do
-	FILE=${f##*/}
-	VID="$(cat /sys/class/hidraw/${FILE}/device/uevent | grep -oP 'HID_ID.{10}\K.{4}')"
-	PID="$(cat /sys/class/hidraw/${FILE}/device/uevent | grep -oP 'HID_ID.{19}\K.{4}')"
-	if [ $VID == $VENDOR_ID ] && [ $PID == $PRODUCT_ID ]; then
-		HIDRAW=$FILE
-		break
-	fi
+for f in /sys/class/hidraw/hidraw*; do
+    FILE=$(basename "$f")
+
+    HID_ID=$(grep HID_ID "$f/device/uevent" 2>/dev/null | cut -d= -f2)
+
+    [[ -z "$HID_ID" ]] && continue
+
+    VID=$(echo "$HID_ID" | cut -d: -f2 | sed 's/^0*//' | tr 'A-Z' 'a-z')
+    PID=$(echo "$HID_ID" | cut -d: -f3 | cut -d. -f1 | sed 's/^0*//' | tr 'A-Z' 'a-z')
+
+    if [[ "$VID" == "$VENDOR_ID" && "$PID" == "$PRODUCT_ID" ]]; then
+        HIDRAW="$FILE"
+        break
+    fi
 done
 
 function get_temp {
